@@ -814,7 +814,7 @@ def create_instance(new=True):
     # proxy = cloth.ob.to_mesh(bpy.context.scene, False, 'PREVIEW')
     # ----------------
 
-    bpy.context.scene.objects.active = cloth.ob
+    bpy.context.view_layer.objects.active = cloth.ob
     cloth.idxer = np.arange(len(cloth.ob.data.vertices), dtype=np.int32)
     # data only accesible through object mode
     mode = cloth.ob.mode
@@ -1828,7 +1828,7 @@ class ModelingClothSew(bpy.types.Operator):
         # else:
         obj = bpy.context.object
 
-        # bpy.context.scene.objects.active = obj
+        # bpy.context.view_layer.objects.active = obj
         mode = obj.mode
         if mode != "EDIT":
             bpy.ops.object.mode_set(mode="EDIT")
@@ -1885,7 +1885,7 @@ class ModelingClothPin(bpy.types.Operator):
             extra_data['alert'] = False
             if len(cloths) > 0:  #
                 ob = extra_data['last_object']  #
-                bpy.context.scene.objects.active = ob
+                bpy.context.view_layer.objects.active = ob
             bpy.context.window.cursor_set("DEFAULT")
             return {'CANCELLED'}
 
@@ -2079,7 +2079,7 @@ class DeletePins(bpy.types.Operator):
             data[ob[1].name].pin_list = l_copy
             data[ob[1].name].hook_list = h_copy
 
-        bpy.context.scene.objects.active = ob[1]
+        bpy.context.view_layer.objects.active = ob[1]
         return {'FINISHED'}
 
 

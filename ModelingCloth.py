@@ -1636,11 +1636,11 @@ def manage_continuous_handler(self, context):
         self["modeling_cloth_handler_frame"] = False
         update_pin_group()
 
-    if handler_scene in bpy.app.handlers.scene_update_post:
-        bpy.app.handlers.scene_update_post.remove(handler_scene)
+    if handler_scene in bpy.app.handlers.depsgraph_update_post:
+        bpy.app.handlers.depsgraph_update_post.remove(handler_scene)
 
     if len(data) > 0:
-        bpy.app.handlers.scene_update_post.append(handler_scene)
+        bpy.app.handlers.depsgraph_update_post.append(handler_scene)
 
 
 # =================  Handler  ======================
@@ -1654,9 +1654,9 @@ def handler_frame(scene):
             if i.__name__ == 'handler_frame':
                 bpy.app.handlers.frame_change_post.remove(i)
 
-        for i in bpy.app.handlers.scene_update_post:
+        for i in bpy.app.handlers.depsgraph_update_post:
             if i.__name__ == 'handler_scene':
-                bpy.app.handlers.scene_update_post.remove(i)
+                bpy.app.handlers.depsgraph_update_post.remove(i)
 
     for i, cloth in items:
         if i in bpy.data.objects:  # using the name. The name could change
@@ -1680,9 +1680,9 @@ def handler_scene(scene):
             if i.__name__ == 'handler_frame':
                 bpy.app.handlers.frame_change_post.remove(i)
 
-        for i in bpy.app.handlers.scene_update_post:
+        for i in bpy.app.handlers.depsgraph_update_post:
             if i.__name__ == 'handler_scene':
-                bpy.app.handlers.scene_update_post.remove(i)
+                bpy.app.handlers.depsgraph_update_post.remove(i)
 
     for i, cloth in items:
         if i in bpy.data.objects:  # using the name. The name could change
@@ -2649,6 +2649,6 @@ if __name__ == "__main__":
         if i.__name__ == 'handler_frame':
             bpy.app.handlers.frame_change_post.remove(i)
 
-# for i in bpy.app.handlers.scene_update_post:
-#    if i.__name__ == 'handler_scene':
-#        bpy.app.handlers.scene_update_post.remove(i)
+	for i in bpy.app.handlers.depsgraph_update_post:
+		if i.__name__ == 'handler_scene':
+			bpy.app.handlers.depsgraph_update_post.remove(i)

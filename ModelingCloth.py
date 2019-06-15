@@ -336,7 +336,7 @@ def create_vertex_groups(groups=['common', 'not_used'], weights=[0.0, 0.0], ob=N
     vg = ob.vertex_groups
     for g in range(0, len(groups)):
         if groups[g] not in vg.keys():  # Don't create groups if there are already there
-            vg.new(groups[g])
+            vg.new(name=groups[g])
             vg[groups[g]].add(range(0, len(ob.data.vertices)), weights[g], 'REPLACE')
         else:
             vg[groups[g]].add(range(0, len(ob.data.vertices)), 0,

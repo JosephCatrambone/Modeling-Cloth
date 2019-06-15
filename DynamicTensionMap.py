@@ -8,7 +8,7 @@ bl_info = {
     "name": "Dynamic Tension Map",
     "author": "Rich Colburn, email: the3dadvantage@gmail.com",
     "version": (1, 0),
-    "blender": (2, 78, 0),
+    "blender": (2, 80, 0),
     "location": "View3D > Extended Tools > Tension Map",
     "description": "Compares the current state of the mesh agains a stored version and displays stretched edges as a color",
     "warning": "'For the empire!' should not be shouted when paying for gum.",

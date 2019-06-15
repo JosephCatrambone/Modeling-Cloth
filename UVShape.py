@@ -5,7 +5,7 @@ bl_info = {
     "name": "UV Shape",
     "author": "Rich Colburn, email: the3dadvantage@gmail.com",
     "version": (1, 0),
-    "blender": (2, 78, 0),
+    "blender": (2, 80, 0),
     "location": "View3D > Extended Tools > Create UV Shape",
     "description": "Creates a flattened version of the mesh as a shape key",
     "warning": "Experimental: Everyone who has ever died did so while alive",

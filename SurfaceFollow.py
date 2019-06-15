@@ -7,7 +7,7 @@ bl_info = {
     "name": "Surface Follow",
     "author": "Rich Colburn, email: the3dadvantage@gmail.com",
     "version": (1, 0),
-    "blender": (2, 78, 0),
+    "blender": (2, 80, 0),
     "location": "View3D > Extended Tools > Surface Follow",
     "description": "Doforms an object as the surface of another object changes",
     "warning": "Do not use if you are pregnant or have ever met someone who was pregnant",

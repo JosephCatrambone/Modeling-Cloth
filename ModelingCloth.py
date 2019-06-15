@@ -554,11 +554,11 @@ def reset_shapes(ob=None):
             ob = extra_data['last_object']
 
     if ob.data.shape_keys == None:
-        ob.shape_key_add('Basis')
+        ob.shape_key_add(name='Basis')
     if 'modeling cloth source key' not in ob.data.shape_keys.key_blocks:
-        ob.shape_key_add('modeling cloth source key')
+        ob.shape_key_add(name='modeling cloth source key')
     if 'modeling cloth key' not in ob.data.shape_keys.key_blocks:
-        ob.shape_key_add('modeling cloth key')
+        ob.shape_key_add(name='modeling cloth key')
         ob.data.shape_keys.key_blocks['modeling cloth key'].value = 1
 
     keys = ob.data.shape_keys.key_blocks
@@ -824,11 +824,11 @@ def create_instance(new=True):
     # data is read from a source shape and written to the display shape so we can change the target springs by changing the source shape
     cloth.name = cloth.ob.name
     if cloth.ob.data.shape_keys == None:
-        cloth.ob.shape_key_add('Basis')
+        cloth.ob.shape_key_add(name='Basis')
     if 'modeling cloth source key' not in cloth.ob.data.shape_keys.key_blocks:
-        cloth.ob.shape_key_add('modeling cloth source key')
+        cloth.ob.shape_key_add(name='modeling cloth source key')
     if 'modeling cloth key' not in cloth.ob.data.shape_keys.key_blocks:
-        cloth.ob.shape_key_add('modeling cloth key')
+        cloth.ob.shape_key_add(name='modeling cloth key')
         cloth.ob.data.shape_keys.key_blocks['modeling cloth key'].value = 1
     cloth.count = len(cloth.ob.data.vertices)
 
@@ -2457,7 +2457,7 @@ class ModelingClothPanel(bpy.types.Panel):
                     col.prop(ob, "modeling_cloth_inner_margin", text="Inner Margin", icon="STICKY_UVS_LOC")
                     col = layout.column(align=True)
 
-                col.label("Collide List:")
+                col.label(text="Collide List:")
                 colliders = [i.name for i in bpy.data.objects if i.modeling_cloth_object_collision]
                 for i in colliders:
                     col.label(i)
@@ -2466,7 +2466,7 @@ class ModelingClothPanel(bpy.types.Panel):
 
                     # object collisions
                     col = layout.column(align=True)
-                    col.label("Collisions")
+                    col.label(text="Collisions")
                     if ob.modeling_cloth:
                         col.prop(ob, "modeling_cloth_object_detect", text="Object Collisions", icon="PHYSICS")
 
@@ -2503,7 +2503,7 @@ class ModelingClothPanel(bpy.types.Panel):
                     col.prop(ob, "modeling_cloth_sew", text="Sew Force")  # , icon='PLAY')
                     col.prop(ob, "modeling_cloth_velocity", text="Velocity")  # , icon='PLAY')
                     col = layout.column(align=True)
-                    col.label("Wind")
+                    col.label(text="Wind")
                     col.prop(ob, "modeling_cloth_wind_x", text="Wind X")  # , icon='PLAY')
                     col.prop(ob, "modeling_cloth_wind_y", text="Wind Y")  # , icon='PLAY')
                     col.prop(ob, "modeling_cloth_wind_z", text="Wind Z")  # , icon='PLAY')
@@ -2533,7 +2533,7 @@ class ModelingClothPanel(bpy.types.Panel):
 
                 # =============================
                 col = layout.column(align=True)
-                col.label('Collision Series')
+                col.label(text="Collision Series")
                 col.operator("object.modeling_cloth_collision_series", text="Paperback")
                 col.operator("object.modeling_cloth_collision_series_kindle", text="Kindle")
                 col.operator("object.modeling_cloth_donate", text="Donate")

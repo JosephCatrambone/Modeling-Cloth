@@ -2114,17 +2114,17 @@ class PinSelected(bpy.types.Operator):
         matrix = ob.matrix_world.copy()
         for v in sel:
             e = bpy.data.objects.new('modeling_cloth_pin', None)
-            bpy.context.scene.objects.link(e)
+            bpy.context.collection.objects.link(e)
             if ob.active_shape_key is None:
-                closest = matrix * ob.data.vertices[v].co  # * matrix
+                closest = matrix @ ob.data.vertices[v].co  # * matrix
             else:
-                closest = matrix * ob.active_shape_key.data[v].co  # * matrix
+                closest = matrix @ ob.active_shape_key.data[v].co  # * matrix
             e.location = closest  # * matrix
-            e.show_x_ray = True
-            e.select = True
-            e.empty_draw_size = .1
-            data[name].pin_list.append(v)
-            data[name].hook_list.append(e)
+            e.show_in_front = True
+            e.select_set(True)
+            e.empty_display_size = .1
+            bpy.data.objects[name].pin_list.append(v) # data[name].pin_list.append(v)
+            bpy.data.objects[name].hook_list.append(e) # data[name].hook_list.append(e)
             ob.select = False
         bpy.ops.object.mode_set(mode='EDIT')
 
@@ -2649,6 +2649,6 @@ if __name__ == "__main__":
         if i.__name__ == 'handler_frame':
             bpy.app.handlers.frame_change_post.remove(i)
 
-	for i in bpy.app.handlers.depsgraph_update_post:
-		if i.__name__ == 'handler_scene':
-			bpy.app.handlers.depsgraph_update_post.remove(i)
+        for i in bpy.app.handlers.depsgraph_update_post:
+            if i.__name__ == 'handler_scene':
+                bpy.app.handlers.depsgraph_update_post.remove(i)
